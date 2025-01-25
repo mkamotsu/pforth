@@ -4,11 +4,11 @@
 
 file(STRINGS sources.cmake SOURCES)
 
-if(WIN32)
+if(WIN32 OR MSYS OR MINGW)
 set(PLATFORM stdio/pf_fileio_stdio.c win32_console/pf_io_win32_console.c )
 endif(WIN32)
 
-if(UNIX OR APPLE)
+if(UNIX OR APPLE AND NOT MSYS AND NOT MINGW)
 set(PLATFORM posix/pf_io_posix.c stdio/pf_fileio_stdio.c)
 endif(UNIX OR APPLE)
 
